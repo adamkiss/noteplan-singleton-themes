@@ -1,5 +1,7 @@
 #!/usr/bin/env bun
 
+import { simpleMerge as merge } from "../dev/simplemerge.ts";
+
 /**
  * Convert any color + alpha<0,1> to Noteplan's alphahex format,
  * or pure hex rgb color if alpha resolves to {f*}
@@ -8,17 +10,408 @@
  * @param {float=} alpha
  * @returns string
  */
-function alpha(color, alpha) {
+function alphahex(color, alpha = 1) {
     const h = Bun.color(color, "hex");
-    const alpha_clean = (alpha ?? 2) - Math.trunc(alpha ?? 1);
-    const a = Math.trunc(alpha_clean * 256).toString(16);
+    const a = Math.trunc(alpha * 255).toString(16).padStart(2, '0');
     return a.startsWith('f')
         ? h
         : `#${a}${h.substring(1)}`;
 }
 
-console.log('building')
+/**
+ * Convert palette color with optional alpha to final hexcode
+ * @param {string} color_name
+ * @param {float=} alpha
+ * @returns string
+ */
+function coloralpha(color_name, alpha) {
+    const [base, shade] = color_name.split('.');
+    const color_hex = palette[base][shade ?? '500'];
+    return alphahex(color_hex, alpha);
+}
+
+/**
+ * Generate a title case version of a string
+ * @param {string} str 
+ * @returns string
+ */
+function titleCase(str) {
+    return str
+        .toLowerCase()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
+const font = {
+    ultralight: '.AppleSystemUIFontUltraLight',
+    thin: '.AppleSystemUIFontThin',
+    light: '.AppleSystemUIFontLight',
+    regular: '.AppleSystemUIFont',
+    medium: '.AppleSystemUIFontMedium',
+    semibold: '.AppleSystemUIFontDemi',
+    bold: '.AppleSystemUIFontBold',
+    heavy: '.AppleSystemUIFontHeavy',
+    black: '.AppleSystemUIFontBlack',
+}
 
 const palette = {
-    blue: 
+    // https://uicolors.app/generate/002bd6
+    blue: {
+        '50': '#e7f4ff',
+        '100': '#d3ecff',
+        '200': '#b0d9ff',
+        '300': '#81bdff',
+        '400': '#4f92ff',
+        '500': '#2865ff',
+        '600': '#0436ff',
+        '700': '#0034ff',
+        '800': '#002bd6',
+        '900': '#0b2da4',
+        '950': '#07195f',
+    },
+    // https://uicolors.app/generate/c7f26c
+    toxic: {
+        '50': '#f8fee7',
+        '100': '#eefccb',
+        '200': '#ddf99d',
+        '300': '#c7f26c',
+        '400': '#abe536',
+        '500': '#8ccb17',
+        '600': '#6ca20e',
+        '700': '#527c0f',
+        '800': '#436212',
+        '900': '#395314',
+        '950': '#1c2e05',
+    },
+    // https://uicolors.app/generate/00bd0d
+    apple: {
+        '50': '#eeffee',
+        '100': '#d7ffd9',
+        '200': '#b2ffb6',
+        '300': '#76ff7e',
+        '400': '#33f540',
+        '500': '#09de17',
+        '600': '#00bd0d',
+        '700': '#04910f',
+        '800': '#0a7112',
+        '900': '#0a5d12',
+        '950': '#003405',
+    },
+    // https://uicolors.app/generate/191824
+    mirage: {
+        '50': '#f3f5fa',
+        '100': '#e9ecf6',
+        '200': '#d7dbee',
+        '300': '#bec3e3',
+        '400': '#a3a7d6',
+        '500': '#8c8cc8',
+        '600': '#7974b7',
+        '700': '#6862a0',
+        '800': '#555182',
+        '900': '#484669',
+        '950': '#191824',
+    },
+
+    noteplan: {
+        calendar: '#bc27c6',
+        todo: '#d18c32',
+    }
+};
+palette.dark = {
+    bg: palette.mirage['950'],
+    fg: palette.mirage['50'],
+    text: palette.mirage['50'],
+};
+palette.light = {
+    bg: '#ffffff',
+    fg: palette.mirage['900'],
+    text: '#000000',
+};
+
+const theme_dont_hide_symbols = _ => ({
+    isHiddenWithoutCursor: false,
+    isRevealOnCursorRange: false,
+});
+
+const theme_base_spacing = (ls = 4, ps = 4) => ({
+    lineSpacing: ls,
+    paragraphSpacingBefore: 0,
+    paragraphSpacing: ps,
+});
+
+const theme_head_intent = _ => ({ headIndent: 36, });
+const theme_npfont = _ => ({ font: "noteplanstate", });
+
+const theme_title = (lvl, { font, size, color, spacebefore, bg = null }) => {
+    const t = {
+        [`title${lvl}`]: {
+            ...theme_base_spacing(4, spacebefore ?? 4),
+            font: font ?? 'bold',
+            size: size ?? 16,
+            color: coloralpha(color ?? `${v}.fg`, 1),
+        },
+        [`title-mark${lvl}`]: {
+            ...theme_base_spacing(4, spacebefore ?? 4),
+            font: font.regular,
+            size: size ?? 16,
+            color: coloralpha(color ?? `${v}.fg`, 0.4),
+        },
+    }
+    if (bg) {
+        t[`title${lvl}`].backgroundColor = coloralpha(bg, 1);
+        t[`title-mark${lvl}`].backgroundColor = coloralpha(bg, 1);
+    }
+    return t;
+};
+
+const build_theme = v => {
+    if (v !== 'dark' && v !== 'light') {
+        throw new Error("Version must be 'dark' or 'light'");
+    }
+    const l = v === 'light';
+
+    const theme = {
+        name: `Singleton (${titleCase(v)})`,
+        style: v,
+        author: {
+            name: "Adam Kiss",
+            github: "https://github.com/adamkiss",
+            website: "https://adamkiss.com"
+        },
+        "editor": {
+            backgroundColor: coloralpha(`${v}.bg`),
+            altBackgroundColor: coloralpha(l ? 'mirage.100' : 'mirage.900'),
+
+            toolbarBackgroundColor: coloralpha(l ? 'mirage.50' : 'mirage.950'),
+            toolbarIconColor: coloralpha(l ? 'blue.800' : 'toxic.300'),
+
+            tintColor: coloralpha(l ? 'blue.800' : 'toxic.300'),
+            tintColor2: coloralpha(l ? 'blue.800' : 'toxic.300'),
+            textColor: coloralpha(`${v}.text`),
+
+            menuItemColor: coloralpha(l ? 'blue.700' : 'blue.300'),
+            menuItemColor: coloralpha(l ? 'mirage.100' : 'mirage.900'),
+
+            shouldOverwriteFont: false
+        },
+        styles: {
+            body: {
+                ...theme_base_spacing(),
+                font: font.regular,
+                fontSize: 16,
+                color: coloralpha(`${v}.text`),
+            },
+            tabbed: {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+            },
+
+            ...theme_title(1, {
+                font: font.bold,
+                size: 20,
+                color: `${v}.fg`,
+                spacebefore: 8,
+            }),
+            ...theme_title(2, {
+                font: font.bold,
+                size: 18,
+                color: l ? 'toxic.950' : `${v}.text`,
+                spacebefore: 4,
+                bg: l ? 'toxic.100' : 'blue.900',
+            }),
+            ...theme_title(3, {
+                font: font.semibold,
+                size: 18,
+                color: `${v}.text`,
+                spacebefore: 4,
+            }),
+            ...theme_title(4, {
+                font: font.regular,
+                size: 18,
+                color: `${v}.text`,
+                spacebefore: 4,
+            }),
+
+            // Basic inline styling
+            "bold": {
+                font: font.semibold,
+            },
+            "bold-left-mark": {},
+            "bold-right-mark": {},
+            "italic": {
+                type: "italic",
+                font: font.regular + 'Italic',
+            },
+            "italic-left-mark": {},
+            "italic-right-mark": {},
+            "boldItalic": {
+                font: font.semibold + 'Italic',
+                underlineStyle: 0,
+            },
+            "boldItalic-left-mark": {},
+            "boldItalic-right-mark": {},
+            "strikethrough": {
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', 1),
+                strikethroughStyle: 2,
+                strikethroughColor: coloralpha(l ? 'mirage.600' : 'mirage.400', 1),
+            },
+            "strikethrough-left-tilde": {
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', .8),
+            },
+            "strikethrough-right-tilde": {
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', .8),
+            },
+            "underline": {
+                color: alphahex('red', 1),
+                underlineStyle: 2,
+                underlineColor: alphahex('red', 1),
+            },
+            "highlighted": {
+                color: coloralpha(l ? 'blue.800' : 'blue.300', 1),
+                font: l ? font.regular : font.medium,
+                backgroundColor: coloralpha('blue.500', .2),
+                rightBorderPadding: 2,
+            },
+            "highlighted-left-marker": {
+                color: coloralpha(l ? 'blue.700' : 'blue.300', .6),
+            },
+            "highlighted-right-marker": {
+                color: coloralpha(l ? 'blue.700' : 'blue.300', .6),
+            },
+
+            // Quotes
+            "quote-mark": {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+                ...theme_npfont(),
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', .2),
+            },
+            "quote-content": {
+                ...theme_head_intent(),
+                color: coloralpha(l ? 'mirage.700' : 'mirage.300'),
+            },
+
+            // CODE (inline & fence)
+            "code": {
+                font: "FragmentMono-Regular",
+                backgroundColor: coloralpha(l ? 'mirage.100' : 'mirage.800', .4),
+            },
+            "code-left-backtick": {
+                ...theme_dont_hide_symbols(),
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', .8),
+                backgroundColor: coloralpha(l ? 'mirage.100' : 'mirage.800', .4),
+            },
+            "code-right-backtick": {
+                ...theme_dont_hide_symbols(),
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', .8),
+                backgroundColor: coloralpha(l ? 'mirage.100' : 'mirage.800', .4),
+            },
+            "code-fence": {
+                theme: l ? "grayscale" : "obsidian",
+                ["corner-radius"]: 6,
+                "body": {
+                    font: "FragmentMono-Regular",
+                    size: 15,
+                },
+                "language-specifier": {
+                    color: coloralpha(`${v}.text`, .5),
+                    ...theme_base_spacing(),
+                },
+                "fence-open": { color: coloralpha(`${v}.text`, .2), },
+                "fence-close": { color: coloralpha(`${v}.text`, .2), },
+            },
+
+            // TASKS
+            todo: {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+                ...theme_npfont(),
+                color: coloralpha(l ? 'blue.400' : 'blue.500', 1),
+            },
+            checked: {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+                color: coloralpha(`${v}.text`),
+            },
+            "checked-char": {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+                regex: "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[x\\] )",
+                matchPosition: 0,
+                color: coloralpha(l ? 'apple.600' : 'apple.400', .8),
+            },
+            "checked-char-canceled": {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+                regex: "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\-\\] )(.*)",
+                matchPosition: 0,
+                color: coloralpha('mirage.500', .7),
+            },
+            "checked-char-scheduled": {
+                ...theme_base_spacing(),
+                ...theme_head_intent(),
+                regex: "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\>\\] )(.*)",
+                matchPosition: 0,
+                color: coloralpha('mirage.500', .7),
+            },
+            "working-on": {
+                ...theme_head_intent(),
+                ...theme_base_spacing(),
+                backgroundColor: coloralpha(`${v}.bg`, 0),
+            },
+            "flagged-1": {
+                ...theme_head_intent(),
+                ...theme_base_spacing(),
+                backgroundColor: coloralpha(l ? 'blue.400' : 'toxic.500', .2),
+            },
+            "flagged-2": {
+                ...theme_head_intent(),
+                ...theme_base_spacing(),
+                backgroundColor: coloralpha(`${v}.bg`, 0),
+            },
+            "flagged-3": {
+                ...theme_head_intent(),
+                ...theme_base_spacing(),
+                backgroundColor: coloralpha(`${v}.bg`, 0),
+            },
+
+            // Links
+            "link": {
+                color: coloralpha(l ? 'blue.700' : 'blue.300', .8),
+            },
+            "note-title-link-right-bracket": {
+                ...theme_dont_hide_symbols(),
+            },
+            "note-title-link-left-bracket": {
+                ...theme_dont_hide_symbols(),
+            },
+
+            // Random
+            hashtag: { rightBorderPadding: 2 },
+            attag: { rightBorderPadding: 2 },
+
+            // Adam's custom formats
+            "TimeBlock_Project_Link": {
+                ...theme_base_spacing(),
+                regex: "(\\+\\[\\[.*?\\]\\])(?:\\s+)",
+                color: coloralpha(l ? 'blue.800' : 'toxic.300', 1),
+            },
+            "TimeBlock_Time": {
+                regex: "(\\d{1,2}[H|h|m|M])",
+                matchPosition: 1,
+                font: font.semibold,
+            },
+            "TimeBlock_Text": {
+                regex: "(\\+\\[\\[.*?\\]\\])(?:\\s+)\\s?(\\d{1,2}[H|h|m|M]){1,2}\\s?(.*)$",
+                matchPosition: 3,
+                color: coloralpha(l ? 'mirage.600' : 'mirage.400', 1),
+            }
+        }
+    }
+
+    return theme;
 }
+
+Bun.write('Singleton Dark.json', JSON.stringify(build_theme('dark'), null, 2));
+Bun.write('Singleton Light.json', JSON.stringify(build_theme('light'), null, 2));

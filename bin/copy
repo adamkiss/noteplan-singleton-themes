@@ -1,3 +1,8 @@
 #!/usr/bin/env bun
 
-console.log('copying')
+import { $ } from 'bun';
+
+const target = '/Users/adam/Library/Containers/co.noteplan.NotePlan-setapp/Data/Library/Application Support/co.noteplan.NotePlan-setapp/Themes';
+
+await $`cp Singleton\ Dark.json ${target}`;
+await $`cp Singleton\ Light.json ${target}`;

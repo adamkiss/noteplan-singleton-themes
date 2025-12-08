@@ -1,0 +1,295 @@
+{
+  "name": "Singleton (Dark)",
+  "style": "dark",
+  "author": {
+    "name": "Adam Kiss",
+    "github": "https://github.com/adamkiss",
+    "website": "https://adamkiss.com"
+  },
+  "editor": {
+    "backgroundColor": "#191824",
+    "altBackgroundColor": "#484669",
+    "toolbarBackgroundColor": "#191824",
+    "toolbarIconColor": "#c7f26c",
+    "tintColor": "#c7f26c",
+    "tintColor2": "#c7f26c",
+    "textColor": "#f3f5fa",
+    "menuItemColor": "#484669",
+    "shouldOverwriteFont": false
+  },
+  "styles": {
+    "body": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "font": ".AppleSystemUIFont",
+      "fontSize": 16,
+      "color": "#f3f5fa"
+    },
+    "tabbed": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36
+    },
+    "title1": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 8,
+      "font": ".AppleSystemUIFontBold",
+      "size": 20,
+      "color": "#f3f5fa"
+    },
+    "title-mark1": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 8,
+      "size": 20,
+      "color": "#66f3f5fa"
+    },
+    "title2": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "font": ".AppleSystemUIFontBold",
+      "size": 18,
+      "color": "#f3f5fa",
+      "backgroundColor": "#0b2da4"
+    },
+    "title-mark2": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "size": 18,
+      "color": "#66f3f5fa",
+      "backgroundColor": "#0b2da4"
+    },
+    "title3": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "font": ".AppleSystemUIFontDemi",
+      "size": 18,
+      "color": "#f3f5fa"
+    },
+    "title-mark3": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "size": 18,
+      "color": "#66f3f5fa"
+    },
+    "title4": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "font": ".AppleSystemUIFont",
+      "size": 18,
+      "color": "#f3f5fa"
+    },
+    "title-mark4": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "size": 18,
+      "color": "#66f3f5fa"
+    },
+    "bold": {
+      "font": ".AppleSystemUIFontDemi"
+    },
+    "bold-left-mark": {},
+    "bold-right-mark": {},
+    "italic": {
+      "type": "italic",
+      "font": ".AppleSystemUIFontItalic"
+    },
+    "italic-left-mark": {},
+    "italic-right-mark": {},
+    "boldItalic": {
+      "font": ".AppleSystemUIFontDemiItalic",
+      "underlineStyle": 0
+    },
+    "boldItalic-left-mark": {},
+    "boldItalic-right-mark": {},
+    "strikethrough": {
+      "color": "#a3a7d6",
+      "strikethroughStyle": 2,
+      "strikethroughColor": "#a3a7d6"
+    },
+    "strikethrough-left-tilde": {
+      "color": "#cca3a7d6"
+    },
+    "strikethrough-right-tilde": {
+      "color": "#cca3a7d6"
+    },
+    "underline": {
+      "color": "#ff0000",
+      "underlineStyle": 2,
+      "underlineColor": "#ff0000"
+    },
+    "highlighted": {
+      "color": "#81bdff",
+      "font": ".AppleSystemUIFontMedium",
+      "backgroundColor": "#332865ff",
+      "rightBorderPadding": 2
+    },
+    "highlighted-left-marker": {
+      "color": "#9981bdff"
+    },
+    "highlighted-right-marker": {
+      "color": "#9981bdff"
+    },
+    "quote-mark": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36,
+      "font": "noteplanstate",
+      "color": "#33a3a7d6"
+    },
+    "quote-content": {
+      "headIndent": 36,
+      "color": "#bec3e3"
+    },
+    "code": {
+      "font": "FragmentMono-Regular",
+      "backgroundColor": "#66555182"
+    },
+    "code-left-backtick": {
+      "isHiddenWithoutCursor": false,
+      "isRevealOnCursorRange": false,
+      "color": "#cca3a7d6",
+      "backgroundColor": "#66555182"
+    },
+    "code-right-backtick": {
+      "isHiddenWithoutCursor": false,
+      "isRevealOnCursorRange": false,
+      "color": "#cca3a7d6",
+      "backgroundColor": "#66555182"
+    },
+    "code-fence": {
+      "theme": "obsidian",
+      "corner-radius": 6,
+      "body": {
+        "font": "FragmentMono-Regular",
+        "size": 15
+      },
+      "language-specifier": {
+        "color": "#7ff3f5fa",
+        "lineSpacing": 4,
+        "paragraphSpacingBefore": 0,
+        "paragraphSpacing": 4
+      },
+      "fence-open": {
+        "color": "#33f3f5fa"
+      },
+      "fence-close": {
+        "color": "#33f3f5fa"
+      }
+    },
+    "todo": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36,
+      "font": "noteplanstate",
+      "color": "#2865ff"
+    },
+    "checked": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36,
+      "color": "#f3f5fa"
+    },
+    "checked-char": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36,
+      "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[x\\] )",
+      "matchPosition": 0,
+      "color": "#cc33f540"
+    },
+    "checked-char-canceled": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36,
+      "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\-\\] )(.*)",
+      "matchPosition": 0,
+      "color": "#b28c8cc8"
+    },
+    "checked-char-scheduled": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "headIndent": 36,
+      "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\>\\] )(.*)",
+      "matchPosition": 0,
+      "color": "#b28c8cc8"
+    },
+    "working-on": {
+      "headIndent": 36,
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "backgroundColor": "#00191824"
+    },
+    "flagged-1": {
+      "headIndent": 36,
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "backgroundColor": "#338ccb17"
+    },
+    "flagged-2": {
+      "headIndent": 36,
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "backgroundColor": "#00191824"
+    },
+    "flagged-3": {
+      "headIndent": 36,
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "backgroundColor": "#00191824"
+    },
+    "link": {
+      "color": "#cc81bdff"
+    },
+    "note-title-link-right-bracket": {
+      "isHiddenWithoutCursor": false,
+      "isRevealOnCursorRange": false
+    },
+    "note-title-link-left-bracket": {
+      "isHiddenWithoutCursor": false,
+      "isRevealOnCursorRange": false
+    },
+    "hashtag": {
+      "rightBorderPadding": 2
+    },
+    "attag": {
+      "rightBorderPadding": 2
+    },
+    "TimeBlock_Project_Link": {
+      "lineSpacing": 4,
+      "paragraphSpacingBefore": 0,
+      "paragraphSpacing": 4,
+      "regex": "(\\+\\[\\[.*?\\]\\])(?:\\s+)",
+      "color": "#c7f26c"
+    },
+    "TimeBlock_Time": {
+      "regex": "(\\d{1,2}[H|h|m|M])",
+      "matchPosition": 1,
+      "font": ".AppleSystemUIFontDemi"
+    },
+    "TimeBlock_Text": {
+      "regex": "(\\+\\[\\[.*?\\]\\])(?:\\s+)\\s?(\\d{1,2}[H|h|m|M]){1,2}\\s?(.*)$",
+      "matchPosition": 3,
+      "color": "#a3a7d6"
+    }
+  }
+}
