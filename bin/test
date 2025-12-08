@@ -1,0 +1,11 @@
+#!/usr/bin/env bun
+
+import {$, sleep} from 'bun';
+
+await $`bin/build`
+await $`bin/copy`
+
+const switchThemeUrl = theme => `noteplan://x-callback-url/runPlugin?pluginID=np.ThemeChooser&command=Choose%20Theme&arg0=${encodeURIComponent(theme)}`
+
+await $`open "${switchThemeUrl('Dracula')}"`
+await $`open "${switchThemeUrl('Singleton (Dark)')}"`

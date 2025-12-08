@@ -1,0 +1,24 @@
+#!/usr/bin/env bun
+
+/**
+ * Convert any color + alpha<0,1> to Noteplan's alphahex format,
+ * or pure hex rgb color if alpha resolves to {f*}
+ * 
+ * @param {Bun.ColorInput} color 
+ * @param {float=} alpha
+ * @returns string
+ */
+function alpha(color, alpha) {
+    const h = Bun.color(color, "hex");
+    const alpha_clean = (alpha ?? 2) - Math.trunc(alpha ?? 1);
+    const a = Math.trunc(alpha_clean * 256).toString(16);
+    return a.startsWith('f')
+        ? h
+        : `#${a}${h.substring(1)}`;
+}
+
+console.log('building')
+
+const palette = {
+    blue: 
+}
