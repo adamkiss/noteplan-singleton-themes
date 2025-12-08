@@ -1,8 +1,24 @@
 # Singleton themes for Noteplan
 
+Minimal light/dark themes for Noteplan.
+
+![Singleton themes Screenshot][./github/readme-screenshot.png]
+
 ## HOW TO USE
 
+Download [Singleton Dark](./Singleton%20Dark.json) or [Singleton Light](./Singleton%20Light.json) to your Noteplan themes folder — See "How to get started" in [Noteplan docs](https://help.noteplan.co/article/44-customize-themes) about theming.
+
 ## HOW TO USE THE BUILD SYSTEM
+
+Build system uses Bun so I don't have to faff around with palettes, and nonstandard transparency, etc, etc. Just clone, and run:
+
+```bash
+bin/build # actually builds the theme
+bin/copy # copies the built theme to my Noteplan folder
+bin/test # build, copy, and use "Theme chooser" plugin to switch themes to reset changes
+```
+
+If you want to use these scripts for your own theme, you'll obviously need to change settings in `build` and names in `copy` and `test`, but that should be pretty obvious where. If you really want to use this and really get stuck, open an issue and I might clear things up.
 
 ## RANDOM
 
