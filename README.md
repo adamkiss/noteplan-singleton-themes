@@ -2,11 +2,11 @@
 
 Minimal light/dark themes for Noteplan.
 
-![Singleton themes Screenshot][./github/readme-screenshot.png]
+![Singleton themes Screenshot][/.github/readme-screenshot.png]
 
 ## HOW TO USE
 
-Download [Singleton Dark](./Singleton%20Dark.json) or [Singleton Light](./Singleton%20Light.json) to your Noteplan themes folder — See "How to get started" in [Noteplan docs](https://help.noteplan.co/article/44-customize-themes) about theming.
+Download [Singleton Dark](/Singleton%20Dark.json) or [Singleton Light](/Singleton%20Light.json) to your Noteplan themes folder — See "How to get started" in [Noteplan docs](https://help.noteplan.co/article/44-customize-themes) about theming.
 
 ## HOW TO USE THE BUILD SYSTEM
 
