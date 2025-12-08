@@ -2,7 +2,7 @@
 
 Minimal light/dark themes for Noteplan.
 
-![Singleton themes Screenshot][/.github/readme-screenshot.png]
+![Singleton themes Screenshot](/.github/readme-screenshot.png)
 
 ## HOW TO USE
 
