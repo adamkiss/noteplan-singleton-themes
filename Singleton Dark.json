@@ -1,5 +1,6 @@
 {
   "name": "Singleton (Dark)",
+  "version": "1.2",
   "style": "dark",
   "author": {
     "name": "Adam Kiss",
@@ -8,13 +9,14 @@
   },
   "editor": {
     "backgroundColor": "#191824",
-    "altBackgroundColor": "#484669",
+    "altBackgroundColor": "#07195f",
     "toolbarBackgroundColor": "#191824",
     "toolbarIconColor": "#c7f26c",
+    "textColor": "#f7f7f8",
     "tintColor": "#c7f26c",
     "tintColor2": "#c7f26c",
-    "textColor": "#f3f5fa",
-    "menuItemColor": "#484669",
+    "menuItemColor": "#81bdff",
+    "timeBlockColor": "#c7f26c",
     "shouldOverwriteFont": false
   },
   "styles": {
@@ -24,7 +26,7 @@
       "paragraphSpacing": 4,
       "font": ".AppleSystemUIFont",
       "fontSize": 16,
-      "color": "#f3f5fa"
+      "color": "#f7f7f8"
     },
     "tabbed": {
       "lineSpacing": 4,
@@ -38,14 +40,14 @@
       "paragraphSpacing": 8,
       "font": ".AppleSystemUIFontBold",
       "size": 20,
-      "color": "#f3f5fa"
+      "color": "#f7f7f8"
     },
     "title-mark1": {
       "lineSpacing": 4,
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 8,
       "size": 20,
-      "color": "#66f3f5fa"
+      "color": "#66f7f7f8"
     },
     "title2": {
       "lineSpacing": 4,
@@ -53,7 +55,7 @@
       "paragraphSpacing": 4,
       "font": ".AppleSystemUIFontBold",
       "size": 18,
-      "color": "#f3f5fa",
+      "color": "#f7f7f8",
       "backgroundColor": "#0b2da4"
     },
     "title-mark2": {
@@ -61,7 +63,7 @@
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 4,
       "size": 18,
-      "color": "#66f3f5fa",
+      "color": "#66f7f7f8",
       "backgroundColor": "#0b2da4"
     },
     "title3": {
@@ -70,14 +72,14 @@
       "paragraphSpacing": 4,
       "font": ".AppleSystemUIFontDemi",
       "size": 18,
-      "color": "#f3f5fa"
+      "color": "#f7f7f8"
     },
     "title-mark3": {
       "lineSpacing": 4,
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 4,
       "size": 18,
-      "color": "#66f3f5fa"
+      "color": "#66f7f7f8"
     },
     "title4": {
       "lineSpacing": 4,
@@ -85,14 +87,14 @@
       "paragraphSpacing": 4,
       "font": ".AppleSystemUIFont",
       "size": 18,
-      "color": "#f3f5fa"
+      "color": "#f7f7f8"
     },
     "title-mark4": {
       "lineSpacing": 4,
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 4,
       "size": 18,
-      "color": "#66f3f5fa"
+      "color": "#66f7f7f8"
     },
     "bold": {
       "font": ".AppleSystemUIFontDemi"
@@ -112,15 +114,15 @@
     "boldItalic-left-mark": {},
     "boldItalic-right-mark": {},
     "strikethrough": {
-      "color": "#a3a7d6",
+      "color": "#8e90a2",
       "strikethroughStyle": 2,
-      "strikethroughColor": "#a3a7d6"
+      "strikethroughColor": "#8e90a2"
     },
     "strikethrough-left-tilde": {
-      "color": "#cca3a7d6"
+      "color": "#cc8e90a2"
     },
     "strikethrough-right-tilde": {
-      "color": "#cca3a7d6"
+      "color": "#cc8e90a2"
     },
     "underline": {
       "color": "#ff0000",
@@ -145,27 +147,27 @@
       "paragraphSpacing": 4,
       "headIndent": 36,
       "font": "noteplanstate",
-      "color": "#33a3a7d6"
+      "color": "#338e90a2"
     },
     "quote-content": {
       "headIndent": 36,
-      "color": "#bec3e3"
+      "color": "#b6b7c3"
     },
     "code": {
       "font": "FragmentMono-Regular",
-      "backgroundColor": "#66555182"
+      "backgroundColor": "#6640414c"
     },
     "code-left-backtick": {
       "isHiddenWithoutCursor": false,
       "isRevealOnCursorRange": false,
-      "color": "#cca3a7d6",
-      "backgroundColor": "#66555182"
+      "color": "#cc8e90a2",
+      "backgroundColor": "#6640414c"
     },
     "code-right-backtick": {
       "isHiddenWithoutCursor": false,
       "isRevealOnCursorRange": false,
-      "color": "#cca3a7d6",
-      "backgroundColor": "#66555182"
+      "color": "#cc8e90a2",
+      "backgroundColor": "#6640414c"
     },
     "code-fence": {
       "theme": "obsidian",
@@ -175,16 +177,16 @@
         "size": 15
       },
       "language-specifier": {
-        "color": "#7ff3f5fa",
+        "color": "#7ff7f7f8",
         "lineSpacing": 4,
         "paragraphSpacingBefore": 0,
         "paragraphSpacing": 4
       },
       "fence-open": {
-        "color": "#33f3f5fa"
+        "color": "#33f7f7f8"
       },
       "fence-close": {
-        "color": "#33f3f5fa"
+        "color": "#33f7f7f8"
       }
     },
     "todo": {
@@ -200,7 +202,7 @@
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 4,
       "headIndent": 36,
-      "color": "#f3f5fa"
+      "color": "#ccb6b7c3"
     },
     "checked-char": {
       "lineSpacing": 4,
@@ -218,7 +220,7 @@
       "headIndent": 36,
       "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\-\\] )(.*)",
       "matchPosition": 0,
-      "color": "#b28c8cc8"
+      "color": "#b2707287"
     },
     "checked-char-scheduled": {
       "lineSpacing": 4,
@@ -227,7 +229,7 @@
       "headIndent": 36,
       "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\>\\] )(.*)",
       "matchPosition": 0,
-      "color": "#b28c8cc8"
+      "color": "#b2707287"
     },
     "working-on": {
       "headIndent": 36,
@@ -269,10 +271,12 @@
       "isRevealOnCursorRange": false
     },
     "hashtag": {
-      "rightBorderPadding": 2
+      "rightBorderPadding": 2,
+      "backgroundColor": "#198ccb17"
     },
     "attag": {
-      "rightBorderPadding": 2
+      "rightBorderPadding": 2,
+      "backgroundColor": "#198ccb17"
     },
     "TimeBlock_Project_Link": {
       "lineSpacing": 4,
@@ -289,7 +293,7 @@
     "TimeBlock_Text": {
       "regex": "(\\+\\[\\[.*?\\]\\])(?:\\s+)\\s?(\\d{1,2}[H|h|m|M]){1,2}\\s?(.*)$",
       "matchPosition": 3,
-      "color": "#a3a7d6"
+      "color": "#b6b7c3"
     }
   }
 }

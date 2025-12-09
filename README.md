@@ -1,4 +1,4 @@
-# Singleton themes for Noteplan
+# Singleton themes for Noteplan v1.2
 
 Minimal light/dark themes for Noteplan.
 

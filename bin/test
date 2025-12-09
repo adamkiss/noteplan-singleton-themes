@@ -8,4 +8,4 @@ await $`bin/copy`
 const switchThemeUrl = theme => `noteplan://x-callback-url/runPlugin?pluginID=np.ThemeChooser&command=Choose%20Theme&arg0=${encodeURIComponent(theme)}`
 
 await $`open "${switchThemeUrl('Dracula')}"`
-await $`open "${switchThemeUrl('Singleton (Dark)')}"`
+await $`open "${switchThemeUrl('Singleton (Light)')}"`

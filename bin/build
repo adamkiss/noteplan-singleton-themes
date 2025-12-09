@@ -98,21 +98,25 @@ const palette = {
         '900': '#0a5d12',
         '950': '#003405',
     },
-    // https://uicolors.app/generate/191824
+    // 50-900: https://uicolors.app/generate/1c1c21
+    // 950: https://uicolors.app/generate/191824
     mirage: {
-        '50': '#f3f5fa',
-        '100': '#e9ecf6',
-        '200': '#d7dbee',
-        '300': '#bec3e3',
-        '400': '#a3a7d6',
-        '500': '#8c8cc8',
-        '600': '#7974b7',
-        '700': '#6862a0',
-        '800': '#555182',
-        '900': '#484669',
+        '50': '#f7f7f8',
+        '100': '#ededf1',
+        '200': '#d8d9df',
+        '300': '#b6b7c3',
+        '400': '#8e90a2',
+        '500': '#707287',
+        '600': '#5a5b6f',
+        '700': '#4a4a5a',
+        '800': '#40414c',
+        '900': '#383842',
         '950': '#191824',
     },
-
+    global: {
+        black: '#000000',
+        white: '#ffffff',
+    },
     noteplan: {
         calendar: '#bc27c6',
         todo: '#d18c32',
@@ -124,9 +128,9 @@ palette.dark = {
     text: palette.mirage['50'],
 };
 palette.light = {
-    bg: '#ffffff',
+    bg: palette.global.white,
     fg: palette.mirage['900'],
-    text: '#000000',
+    text: palette.global.black,
 };
 
 const theme_dont_hide_symbols = _ => ({
@@ -173,6 +177,7 @@ const build_theme = v => {
 
     const theme = {
         name: `Singleton (${titleCase(v)})`,
+        version: "1.2",
         style: v,
         author: {
             name: "Adam Kiss",
@@ -180,18 +185,29 @@ const build_theme = v => {
             website: "https://adamkiss.com"
         },
         "editor": {
+            // main bg
             backgroundColor: coloralpha(`${v}.bg`),
-            altBackgroundColor: coloralpha(l ? 'mirage.100' : 'mirage.900'),
+            // ios: sidebar, prefs, weekends
+            altBackgroundColor: coloralpha(l ? 'mirage.50' : 'blue.950'),
 
+            // ios toolbar/commandbar, mac event/reminder, hover states
             toolbarBackgroundColor: coloralpha(l ? 'mirage.50' : 'mirage.950'),
+            // Icons of the iPhone toolbar while editing a note
             toolbarIconColor: coloralpha(l ? 'blue.800' : 'toxic.300'),
 
-            tintColor: coloralpha(l ? 'blue.800' : 'toxic.300'),
-            tintColor2: coloralpha(l ? 'blue.800' : 'toxic.300'),
+            // folder name, icons, settings, calendar dates/times
             textColor: coloralpha(`${v}.text`),
 
+            // cursor / links
+            tintColor: coloralpha(l ? 'blue.900' : 'toxic.300'),
+            // calendar selected date
+            tintColor2: coloralpha(l ? 'blue.600' : 'toxic.300'),
+
+            // icons / month / year top of ios
             menuItemColor: coloralpha(l ? 'blue.700' : 'blue.300'),
-            menuItemColor: coloralpha(l ? 'mirage.100' : 'mirage.900'),
+
+            // calendar timeblock
+            timeBlockColor: coloralpha(l ? 'toxic.600' : 'toxic.300'),
 
             shouldOverwriteFont: false
         },
@@ -327,12 +343,12 @@ const build_theme = v => {
                 ...theme_base_spacing(),
                 ...theme_head_intent(),
                 ...theme_npfont(),
-                color: coloralpha(l ? 'blue.400' : 'blue.500', 1),
+                color: coloralpha(l ? 'mirage.700' : 'blue.500', 1),
             },
             checked: {
                 ...theme_base_spacing(),
                 ...theme_head_intent(),
-                color: coloralpha(`${v}.text`),
+                color: coloralpha(l ? 'mirage.800' : 'mirage.300', .8),
             },
             "checked-char": {
                 ...theme_base_spacing(),
@@ -388,8 +404,14 @@ const build_theme = v => {
             },
 
             // Random
-            hashtag: { rightBorderPadding: 2 },
-            attag: { rightBorderPadding: 2 },
+            hashtag: {
+                rightBorderPadding: 2,
+                backgroundColor: coloralpha(l ? 'blue.500' : 'toxic.500', .1),
+            },
+            attag: {
+                rightBorderPadding: 2,
+                backgroundColor: coloralpha(l ? 'blue.500' : 'toxic.500', .1),
+            },
 
             // Adam's custom formats
             "TimeBlock_Project_Link": {
@@ -405,7 +427,7 @@ const build_theme = v => {
             "TimeBlock_Text": {
                 regex: "(\\+\\[\\[.*?\\]\\])(?:\\s+)\\s?(\\d{1,2}[H|h|m|M]){1,2}\\s?(.*)$",
                 matchPosition: 3,
-                color: coloralpha(l ? 'mirage.600' : 'mirage.400', 1),
+                color: coloralpha(l ? 'mirage.800' : 'mirage.300', 1),
             }
         }
     }

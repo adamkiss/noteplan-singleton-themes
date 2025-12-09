@@ -1,5 +1,6 @@
 {
   "name": "Singleton (Light)",
+  "version": "1.2",
   "style": "light",
   "author": {
     "name": "Adam Kiss",
@@ -8,13 +9,14 @@
   },
   "editor": {
     "backgroundColor": "#ffffff",
-    "altBackgroundColor": "#e9ecf6",
-    "toolbarBackgroundColor": "#f3f5fa",
+    "altBackgroundColor": "#f7f7f8",
+    "toolbarBackgroundColor": "#f7f7f8",
     "toolbarIconColor": "#002bd6",
-    "tintColor": "#002bd6",
-    "tintColor2": "#002bd6",
     "textColor": "#000000",
-    "menuItemColor": "#e9ecf6",
+    "tintColor": "#0b2da4",
+    "tintColor2": "#0436ff",
+    "menuItemColor": "#0034ff",
+    "timeBlockColor": "#6ca20e",
     "shouldOverwriteFont": false
   },
   "styles": {
@@ -38,14 +40,14 @@
       "paragraphSpacing": 8,
       "font": ".AppleSystemUIFontBold",
       "size": 20,
-      "color": "#484669"
+      "color": "#383842"
     },
     "title-mark1": {
       "lineSpacing": 4,
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 8,
       "size": 20,
-      "color": "#66484669"
+      "color": "#66383842"
     },
     "title2": {
       "lineSpacing": 4,
@@ -112,15 +114,15 @@
     "boldItalic-left-mark": {},
     "boldItalic-right-mark": {},
     "strikethrough": {
-      "color": "#7974b7",
+      "color": "#5a5b6f",
       "strikethroughStyle": 2,
-      "strikethroughColor": "#7974b7"
+      "strikethroughColor": "#5a5b6f"
     },
     "strikethrough-left-tilde": {
-      "color": "#cc7974b7"
+      "color": "#cc5a5b6f"
     },
     "strikethrough-right-tilde": {
-      "color": "#cc7974b7"
+      "color": "#cc5a5b6f"
     },
     "underline": {
       "color": "#ff0000",
@@ -145,27 +147,27 @@
       "paragraphSpacing": 4,
       "headIndent": 36,
       "font": "noteplanstate",
-      "color": "#337974b7"
+      "color": "#335a5b6f"
     },
     "quote-content": {
       "headIndent": 36,
-      "color": "#6862a0"
+      "color": "#4a4a5a"
     },
     "code": {
       "font": "FragmentMono-Regular",
-      "backgroundColor": "#66e9ecf6"
+      "backgroundColor": "#66ededf1"
     },
     "code-left-backtick": {
       "isHiddenWithoutCursor": false,
       "isRevealOnCursorRange": false,
-      "color": "#cc7974b7",
-      "backgroundColor": "#66e9ecf6"
+      "color": "#cc5a5b6f",
+      "backgroundColor": "#66ededf1"
     },
     "code-right-backtick": {
       "isHiddenWithoutCursor": false,
       "isRevealOnCursorRange": false,
-      "color": "#cc7974b7",
-      "backgroundColor": "#66e9ecf6"
+      "color": "#cc5a5b6f",
+      "backgroundColor": "#66ededf1"
     },
     "code-fence": {
       "theme": "grayscale",
@@ -193,14 +195,14 @@
       "paragraphSpacing": 4,
       "headIndent": 36,
       "font": "noteplanstate",
-      "color": "#4f92ff"
+      "color": "#4a4a5a"
     },
     "checked": {
       "lineSpacing": 4,
       "paragraphSpacingBefore": 0,
       "paragraphSpacing": 4,
       "headIndent": 36,
-      "color": "#000000"
+      "color": "#cc40414c"
     },
     "checked-char": {
       "lineSpacing": 4,
@@ -218,7 +220,7 @@
       "headIndent": 36,
       "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\-\\] )(.*)",
       "matchPosition": 0,
-      "color": "#b28c8cc8"
+      "color": "#b2707287"
     },
     "checked-char-scheduled": {
       "lineSpacing": 4,
@@ -227,7 +229,7 @@
       "headIndent": 36,
       "regex": "(^\\h*[\\*\\-]{1} |^\\h*[0-9]+[\\.\\)] )(\\[\\>\\] )(.*)",
       "matchPosition": 0,
-      "color": "#b28c8cc8"
+      "color": "#b2707287"
     },
     "working-on": {
       "headIndent": 36,
@@ -269,10 +271,12 @@
       "isRevealOnCursorRange": false
     },
     "hashtag": {
-      "rightBorderPadding": 2
+      "rightBorderPadding": 2,
+      "backgroundColor": "#192865ff"
     },
     "attag": {
-      "rightBorderPadding": 2
+      "rightBorderPadding": 2,
+      "backgroundColor": "#192865ff"
     },
     "TimeBlock_Project_Link": {
       "lineSpacing": 4,
@@ -289,7 +293,7 @@
     "TimeBlock_Text": {
       "regex": "(\\+\\[\\[.*?\\]\\])(?:\\s+)\\s?(\\d{1,2}[H|h|m|M]){1,2}\\s?(.*)$",
       "matchPosition": 3,
-      "color": "#7974b7"
+      "color": "#40414c"
     }
   }
 }
